@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Hotel Digital Upgrade & Direct Booking System Proposal</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- FontAwesome Icons CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#ecfdf5',
+                            100: '#d1fae5',
+                            500: '#10b981',
+                            600: '#059669',
+                            700: '#047857',
+                        },
+                        navy: {
+                            800: '#1e293b',
+                            900: '#0f172a',
+                            950: '#020617',
+                        },
+                        gold: {
+                            50: '#fffbe6',
+                            500: '#f59e0b',
+                            600: '#d97706',
+                            700: '#b45309',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        html { 
+            scroll-behavior: smooth; 
+            -webkit-tap-highlight-color: transparent;
+        }
+        body { 
+            background-color: #f8fafc; 
+            color: #0f172a; 
+            overflow-x: hidden;
+        }
+        
+        /* Mobile-First Fluid Typography */
+        .text-fluid-hero {
+            font-size: clamp(1.75rem, 4.5vw, 3.25rem);
+            line-height: 1.15;
+        }
+        .text-fluid-heading {
+            font-size: clamp(1.5rem, 3.5vw, 2.5rem);
+            line-height: 1.2;
+        }
+
+        .light-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.04), 0 2px 4px -2px rgba(0, 0, 0, 0.04);
+        }
+        
+        .light-card-hover {
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        @media (hover: hover) {
+            .light-card-hover:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 12px 24px -6px rgba(15, 23, 42, 0.08);
+                border-color: #cbd5e1;
+            }
+        }
+
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .highlight-flagship {
+            border: 2px solid #d97706 !important;
+            box-shadow: 0 20px 25px -5px rgba(217, 119, 6, 0.12), 0 8px 10px -6px rgba(217, 119, 6, 0.08) !important;
+            background: #fffdfa !important;
+        }
+
+        /* Pulse animation for WhatsApp Floating CTA */
+        @keyframes pulse-ring {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(5, 150, 105, 0.6); }
+            70% { transform: scale(1); box-shadow: 0 0 0 14px rgba(5, 150, 105, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(5, 150, 105, 0); }
+        }
+        .whatsapp-float {
+            animation: pulse-ring 2.5s infinite;
+        }
+
+        /* Custom Touch Range Inputs */
+        input[type=range] {
+            height: 8px;
+            border-radius: 4px;
+            background: #e2e8f0;
+        }
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 24px;
+            width: 24px;
+            border-radius: 50%;
+            background: #059669;
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        }
+
+        /* Print / PDF Generation Optimization */
+        @media print {
+            body { background: #ffffff !important; color: #000000 !important; }
+            .no-print, header, footer, .whatsapp-float-btn, button, select, input[type=range] { display: none !important; }
+            .print-full-width { width: 100% !important; max-width: 100% !important; margin: 0 !important; padding: 0 !important; }
+            .light-card { box-shadow: none !important; border: 1px solid #cbd5e1 !important; page-break-inside: avoid; }
+            .page-break { page-break-before: always; }
+        }
+    </style>
+</head>
+<body class="font-sans antialiased selection:bg-brand-500 selection:text-white">
+
+    <!-- FLOATING WHATSAPP CTA BUTTON (Mobile & Desktop Padded) -->
+    <a href="https://wa.me/918815081605?text=Hi%20Om,%20I%20reviewed%20your%20Hotel%20Digital%20Upgrade%20Proposal%20and%20want%20to%20discuss." 
+       target="_blank" 
+       rel="noopener"
+       aria-label="Direct WhatsApp Contact"
+       class="no-print whatsapp-float-btn whatsapp-float fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-50 flex items-center gap-3 bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white font-bold px-4 py-3.5 sm:px-5 sm:py-4 rounded-full shadow-2xl transition border-2 border-white min-h-[48px]">
+        <i class="fa-brands fa-whatsapp text-2xl"></i>
+        <span class="hidden sm:inline text-sm font-semibold tracking-wide">Direct WhatsApp: +91 8815081605</span>
+    </a>
+
+    <!-- TOP STICKY NAVIGATION BAR (Mobile Responsive) -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200 no-print shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between">
+            
+            <!-- Brand Info -->
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-gradient-to-tr from-emerald-600 to-teal-700 flex items-center justify-center text-white font-black text-lg sm:text-xl shadow-md flex-shrink-0">
+                    <i class="fa-solid fa-hotel"></i>
+                </div>
+                <div>
+                    <span class="text-sm sm:text-base font-extrabold text-slate-900 tracking-tight block leading-tight">Hotel Digital Upgrade</span>
+                    <span class="text-[10px] sm:text-xs text-emerald-700 font-semibold block">Om Uikey • Executive Proposal</span>
+                </div>
+            </div>
+
+            <!-- Desktop Navigation Links -->
+            <nav class="hidden lg:flex items-center space-x-8 text-sm font-semibold text-slate-600">
+                <a href="#discovery" class="hover:text-emerald-600 transition-colors">Needs Selector</a>
+                <a href="#pricing" class="hover:text-emerald-600 transition-colors">5-Tier Pricing</a>
+                <a href="#calculator" class="hover:text-emerald-600 transition-colors">ROI Calculator</a>
+                <a href="#portfolio" class="hover:text-emerald-600 transition-colors">Track Record & Ranking Proof</a>
+            </nav>
+
+            <!-- Quick Action Buttons -->
+            <div class="flex items-center space-x-2 sm:space-x-3">
+                <!-- Mobile Call Tap Button -->
+                <a href="tel:+918815081605" class="flex sm:hidden items-center justify-center w-10 h-10 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-300 min-h-[44px]" aria-label="Call Direct">
+                    <i class="fa-solid fa-phone text-emerald-600"></i>
+                </a>
+
+                <!-- Desktop PDF Print Button -->
+                <button onclick="window.print()" class="hidden sm:flex items-center space-x-2 px-3.5 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold border border-slate-300 transition min-h-[44px]">
+                    <i class="fa-solid fa-file-pdf text-rose-600"></i>
+                    <span>Export PDF</span>
+                </button>
+
+                <!-- WhatsApp Direct CTA -->
+                <a href="https://wa.me/918815081605?text=Hi%20Om,%20I%20am%20interested%20in%20upgrading%20my%20hotel%20website." 
+                   target="_blank" 
+                   rel="noopener"
+                   class="flex items-center space-x-2 px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white text-xs sm:text-sm font-bold shadow-md transition min-h-[44px]">
+                    <i class="fa-brands fa-whatsapp text-base"></i>
+                    <span class="hidden sm:inline">+91 8815081605</span>
+                    <span class="sm:hidden text-xs">WhatsApp</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Mobile Quick Scroll Bar -->
+        <div class="flex lg:hidden overflow-x-auto py-2 px-4 space-x-4 bg-slate-50 border-t border-slate-200 text-xs font-bold text-slate-600 whitespace-nowrap scrollbar-none">
+            <a href="#discovery" class="hover:text-emerald-700">Quiz Selector</a>
+            <span>•</span>
+            <a href="#pricing" class="hover:text-emerald-700">5 Pricing Tiers</a>
+            <span>•</span>
+            <a href="#calculator" class="hover:text-emerald-700">ROI Calculator</a>
+            <span>•</span>
+            <a href="#portfolio" class="hover:text-emerald-700">Live Search Proof</a>
+        </div>
+    </header>
+
+    <!-- MAIN CONTAINER -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-12 space-y-12 sm:space-y-16 print-full-width">
+
+        <!-- HERO SECTION -->
+        <section class="relative rounded-2xl sm:rounded-3xl bg-white border border-slate-200 p-6 sm:p-12 shadow-sm overflow-hidden">
+            <div class="absolute top-0 right-0 w-64 sm:w-80 h-64 sm:h-80 bg-amber-500/5 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute bottom-0 left-0 w-64 sm:w-80 h-64 sm:h-80 bg-emerald-500/5 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="relative z-10 max-w-4xl space-y-4 sm:space-y-6">
+                <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-amber-50 border border-amber-200 text-amber-800 text-[11px] sm:text-xs font-bold uppercase tracking-wider">
+                    <i class="fa-solid fa-crown text-amber-600"></i>
+                    <span>Strategic Hotel Growth & Automation</span>
+                </div>
+
+                <h1 class="text-fluid-hero font-black text-slate-900 tracking-tight">
+                    Hotel Digital Upgrade & <span class="gold-gradient-text">Unified Direct Booking Engine</span>
+                </h1>
+
+                <p class="text-sm sm:text-lg text-slate-600 leading-relaxed">
+                    Stop losing 18–25% of your profit to OTAs. Secure direct zero-commission bookings, rank #1 on Google in your city, and view all reservations from <span class="font-bold text-slate-900 underline decoration-amber-500 underline-offset-4">MakeMyTrip, Agoda, Booking.com & Direct Guests</span> inside one single unified screen.
+                </p>
+
+                <!-- Developer Contact Banner -->
+                <div class="pt-6 border-t border-slate-200 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                    <div class="flex items-center space-x-3 sm:space-x-4">
+                        <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-slate-900 text-white font-extrabold text-lg sm:text-xl flex items-center justify-center border-2 border-amber-500 shadow-md flex-shrink-0">
+                            OU
+                        </div>
+                        <div>
+                            <div class="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Proposal Prepared By</div>
+                            <div class="text-sm sm:text-base font-extrabold text-slate-900 flex items-center gap-2">
+                                Om Uikey
+                                <span class="text-[10px] sm:text-xs font-semibold px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 border border-emerald-200">Full-Stack & AI Engineer</span>
+                            </div>
+                            <div class="text-xs text-slate-600 flex flex-wrap items-center gap-3 mt-1 font-medium">
+                                <a href="https://wa.me/918815081605" target="_blank" rel="noopener" class="text-emerald-700 hover:underline flex items-center gap-1 font-bold">
+                                    <i class="fa-brands fa-whatsapp text-emerald-600"></i> +91 8815081605
+                                </a>
+                                <span>•</span>
+                                <a href="tel:+918815081605" class="text-slate-700 hover:underline flex items-center gap-1">
+                                    <i class="fa-solid fa-phone text-slate-500"></i> Call Direct
+                                </a>
+                                <span>•</span>
+                                <a href="https://github.com/outstandingom/" target="_blank" rel="noopener" class="text-slate-600 hover:text-slate-900 flex items-center gap-1 font-mono">
+                                    <i class="fa-brands fa-github"></i> github.com/outstandingom
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-wrap gap-2 text-xs">
+                        <span class="px-2.5 py-1 rounded-lg bg-slate-100 border border-slate-200 text-slate-700 font-semibold flex items-center gap-1.5">
+                            <i class="fa-solid fa-shield-halved text-emerald-600"></i> 0% Direct Commission
+                        </span>
+                        <span class="px-2.5 py-1 rounded-lg bg-slate-100 border border-slate-200 text-slate-700 font-semibold flex items-center gap-1.5">
+                            <i class="fa-solid fa-robot text-emerald-600"></i> ChatGPT AI Optimized
+                        </span>
+                        <span class="px-2.5 py-1 rounded-lg bg-slate-100 border border-slate-200 text-slate-700 font-semibold flex items-center gap-1.5">
+                            <i class="fa-solid fa-bolt text-emerald-600"></i> Single-Screen OTA Sync
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROBLEM vs SOLUTION -->
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Problem Card -->
+            <div class="light-card rounded-2xl p-6 sm:p-8 border-l-4 border-l-rose-500 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center space-x-3 text-rose-600 mb-4">
+                        <i class="fa-solid fa-triangle-exclamation text-xl sm:text-2xl"></i>
+                        <h3 class="text-base sm:text-lg font-bold text-slate-900">The Problem Hotel Owners Face Today</h3>
+                    </div>
+                    <ul class="space-y-3 text-slate-600 text-xs sm:text-sm">
+                        <li class="flex items-start gap-2.5">
+                            <i class="fa-solid fa-circle-xmark text-rose-500 mt-1 flex-shrink-0"></i>
+                            <span><strong>18%–25% Revenue Leakage:</strong> MakeMyTrip, Agoda & Booking.com eat up huge commission margins on every single room night.</span>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <i class="fa-solid fa-circle-xmark text-rose-500 mt-1 flex-shrink-0"></i>
+                            <span><strong>Portal Logging Chaos:</strong> Staff wastes hours manually logging into 4 separate extranets daily to update date prices & availability.</span>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <i class="fa-solid fa-circle-xmark text-rose-500 mt-1 flex-shrink-0"></i>
+                            <span><strong>Double-Booking Risk:</strong> Overbooking occurs when a room sells on Agoda before staff can manually close it on MakeMyTrip.</span>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <i class="fa-solid fa-circle-xmark text-rose-500 mt-1 flex-shrink-0"></i>
+                            <span><strong>Invisible Direct Search:</strong> Missing travelers searching Google for <em>"Best family hotel in [City]"</em> due to poor local SEO.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Solution Card -->
+            <div class="light-card rounded-2xl p-6 sm:p-8 border-l-4 border-l-emerald-600 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center space-x-3 text-emerald-600 mb-4">
+                        <i class="fa-solid fa-circle-check text-xl sm:text-2xl"></i>
+                        <h3 class="text-base sm:text-lg font-bold text-slate-900">Our Integrated Engineering Solution</h3>
+                    </div>
+                    <ul class="space-y-3 text-slate-600 text-xs sm:text-sm">
+                        <li class="flex items-start gap-2.5">
+                            <i class="fa-solid fa-check text-emerald-600 mt-1 font-bold flex-shrink-0"></i>
+                            <span><strong>Direct Booking Engine (0% Commission):</strong> Guests book & pay directly on your site so you retain 100% of guest revenue.</span>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <i class="fa-solid fa-check text-emerald-600 mt-1 font-bold flex-shrink-0"></i>
+                            <span><strong>Single Unified Command Screen:</strong> See MakeMyTrip, Agoda, Booking.com & website bookings inside 1 clean dashboard.</span>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <i class="fa-solid fa-check text-emerald-600 mt-1 font-bold flex-shrink-0"></i>
+                            <span><strong>Real-Time 2-Way Channel Manager Sync:</strong> Instant sync automatically blocks booked dates across all OTAs immediately.</span>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <i class="fa-solid fa-check text-emerald-600 mt-1 font-bold flex-shrink-0"></i>
+                            <span><strong>Google Search & ChatGPT AI Dominance:</strong> Engineered to rank #1 on Google in your target city & get AI recommended.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- INTERACTIVE CLIENT REQUIREMENTS QUIZ -->
+        <section id="discovery" class="light-card rounded-2xl sm:rounded-3xl p-6 sm:p-10 border border-slate-200">
+            <div class="max-w-3xl mb-6 sm:mb-8">
+                <span class="text-xs font-bold uppercase tracking-wider text-emerald-700">Interactive Requirement Quiz</span>
+                <h2 class="text-fluid-heading font-extrabold text-slate-900 mt-1">Which Plan Fits Your Hotel?</h2>
+                <p class="text-slate-600 mt-2 text-xs sm:text-sm leading-relaxed">Select your business requirement below to calculate your exact tier deliverables and send it directly to developer Om Uikey via WhatsApp.</p>
+            </div>
+
+            <div class="space-y-3.5 sm:space-y-4">
+                <!-- Option 1 -->
+                <div class="p-4 rounded-xl sm:rounded-2xl bg-slate-50 border border-slate-200 hover:border-slate-300 transition cursor-pointer" onclick="selectQuizOption('1')">
+                    <label class="flex items-start gap-3 cursor-pointer min-h-[44px]">
+                        <input type="radio" name="req_tier" value="1" onchange="updateRecommender()" class="mt-1 w-5 h-5 accent-emerald-600 cursor-pointer flex-shrink-0">
+                        <div>
+                            <span class="font-bold text-slate-900 text-sm sm:text-base block">Q1: I want a clean static website ranking on Google for 1 keyword in my city (₹10,000)</span>
+                            <p class="text-xs text-slate-500 mt-1">Fast mobile website, local city search ranking, direct WhatsApp & click-to-call buttons.</p>
+                        </div>
+                    </label>
+                </div>
+
+                <!-- Option 2 -->
+                <div class="p-4 rounded-xl sm:rounded-2xl bg-slate-50 border border-slate-200 hover:border-slate-300 transition cursor-pointer" onclick="selectQuizOption('2')">
+                    <label class="flex items-start gap-3 cursor-pointer min-h-[44px]">
+                        <input type="radio" name="req_tier" value="2" onchange="updateRecommender()" class="mt-1 w-5 h-5 accent-emerald-600 cursor-pointer flex-shrink-0">
+                        <div>
+                            <span class="font-bold text-slate-900 text-sm sm:text-base block">Q2: I want my website to rank across 2 to 3 cities and showcase all hotel offerings (₹20,000)</span>
+                            <p class="text-xs text-slate-500 mt-1">Multi-city location keyword ranking (e.g., Neelbad, Bhopal, Sehore), room showcase gallery, dining & banquet details.</p>
+                        </div>
+                    </label>
+                </div>
+
+                <!-- Option 3 -->
+                <div class="p-4 rounded-xl sm:rounded-2xl bg-slate-50 border border-slate-200 hover:border-slate-300 transition cursor-pointer" onclick="selectQuizOption('3')">
+                    <label class="flex items-start gap-3 cursor-pointer min-h-[44px]">
+                        <input type="radio" name="req_tier" value="3" onchange="updateRecommender()" class="mt-1 w-5 h-5 accent-emerald-600 cursor-pointer flex-shrink-0">
+                        <div>
+                            <span class="font-bold text-slate-900 text-sm sm:text-base block">Q3: I need a complete Admin Panel to control room prices, availability & website content (₹40,000)</span>
+                            <p class="text-xs text-slate-500 mt-1">Dynamic website with admin management dashboard, room & inventory system, availability calendar, guest inquiry manager.</p>
+                        </div>
+                    </label>
+                </div>
+
+                <!-- Option 4 -->
+                <div class="p-4 rounded-xl sm:rounded-2xl bg-slate-50 border border-slate-200 hover:border-slate-300 transition cursor-pointer" onclick="selectQuizOption('4')">
+                    <label class="flex items-start gap-3 cursor-pointer min-h-[44px]">
+                        <input type="radio" name="req_tier" value="4" onchange="updateRecommender()" class="mt-1 w-5 h-5 accent-emerald-600 cursor-pointer flex-shrink-0">
+                        <div>
+                            <span class="font-bold text-slate-900 text-sm sm:text-base block">Q4: I want Direct Guest Bookings + Payment Gateway (0% Commission) + 2–3 City SEO + AI Search Optimization (₹60,000)</span>
+                            <p class="text-xs text-slate-500 mt-1">Direct online payments (UPI/Cards), zero middleman fees, lowest price guarantee, multi-city SEO, plus complimentary ChatGPT AI search optimization.</p>
+                        </div>
+                    </label>
+                </div>
+
+                <!-- Option 5 (Flagship) -->
+                <div class="p-4 rounded-xl sm:rounded-2xl bg-amber-50/70 border border-amber-300 hover:border-amber-400 transition cursor-pointer" onclick="selectQuizOption('5')">
+                    <label class="flex items-start gap-3 cursor-pointer min-h-[44px]">
+                        <input type="radio" name="req_tier" value="5" checked onchange="updateRecommender()" class="mt-1 w-5 h-5 accent-amber-600 cursor-pointer flex-shrink-0">
+                        <div>
+                            <span class="font-extrabold text-amber-950 text-sm sm:text-base block">Q5 (Flagship Recommendation): I want MakeMyTrip, Agoda & all OTAs synced into ONE single unified dashboard (₹80,000)</span>
+                            <p class="text-xs text-amber-900 mt-1 font-medium">Complete direct booking engine + Payment Gateway + Multi-OTA 1-screen command center (MakeMyTrip, Agoda, Booking.com 2-way instant sync).</p>
+                        </div>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Dynamic Recommendation Result Card -->
+            <div id="rec-box" class="mt-6 sm:mt-8 p-5 sm:p-6 rounded-2xl bg-slate-900 text-white flex flex-col md:flex-row items-start md:items-center justify-between gap-6 shadow-xl">
+                <div class="space-y-1">
+                    <div class="text-[11px] font-bold text-amber-400 uppercase tracking-wider">Recommended Plan Deliverables</div>
+                    <div id="rec-title" class="text-lg sm:text-xl font-black text-white">Plan 5: Enterprise All-in-One OTA Sync Platform</div>
+                    <p id="rec-desc" class="text-xs sm:text-sm text-slate-300 max-w-2xl leading-relaxed">Direct booking engine, payment gateway, multi-city Google rankings, and instant 1-screen sync with MakeMyTrip & Agoda.</p>
+                </div>
+
+                <div class="w-full md:w-auto flex flex-col sm:flex-row md:flex-col items-stretch sm:items-center md:items-end justify-between gap-3 flex-shrink-0 pt-4 md:pt-0 border-t md:border-t-0 border-slate-800">
+                    <div id="rec-price" class="text-3xl font-black text-amber-400 text-left md:text-right">₹80,000</div>
+                    <a id="rec-wa-btn" 
+                       href="https://wa.me/918815081605?text=Hi%20Om,%20I%20am%20interested%20in%20Plan%205%20(₹80,000)%20Enterprise%20OTA%20Sync%20Platform." 
+                       target="_blank" 
+                       rel="noopener"
+                       class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 active:scale-95 text-white font-bold text-xs shadow-md transition min-h-[44px]">
+                        <i class="fa-brands fa-whatsapp text-base"></i>
+                        <span>Send Requirement to +91 8815081605</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5-TIER POINT-TO-POINT PRICING MATRIX -->
+        <section id="pricing" class="space-y-8">
+            <div class="text-center max-w-3xl mx-auto space-y-2">
+                <span class="text-xs font-bold uppercase tracking-wider text-emerald-700">Clear Point-to-Point Investment Tiers</span>
+                <h2 class="text-fluid-heading font-black text-slate-900">5 Pricing Tiers (₹10k to ₹80k)</h2>
+                <p class="text-slate-600 text-xs sm:text-base">Transparent scope of work designed to fit every hotel size & growth goal.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                <!-- Plan 1 (₹10,000) -->
+                <div id="tier-card-1" class="light-card light-card-hover rounded-2xl sm:rounded-3xl p-6 flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <span class="text-xs font-extrabold uppercase tracking-wider text-slate-500">Plan 1</span>
+                                <h3 class="text-lg font-extrabold text-slate-900 mt-0.5">Local Google Starter</h3>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-2xl font-black text-slate-900">₹10,000</span>
+                                <span class="block text-[10px] text-slate-500">One-time fee</span>
+                            </div>
+                        </div>
+                        <p class="text-xs text-slate-500 mt-3 border-b border-slate-200 pb-3">Entry-level web presence for lodges & small hotels in 1 local area.</p>
+
+                        <ul class="mt-4 space-y-2.5 text-xs text-slate-700">
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-circle-check text-emerald-600 mt-0.5 flex-shrink-0"></i>
+                                <span>High-speed mobile responsive static website</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-circle-check text-emerald-600 mt-0.5 flex-shrink-0"></i>
+                                <span>Google Search Ranking for <strong>1 primary keyword in 1 city</strong></span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-circle-check text-emerald-600 mt-0.5 flex-shrink-0"></i>
+                                <span>Direct Click-to-Call (`tel:`) & WhatsApp inquiry integration</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-circle-check text-emerald-600 mt-0.5 flex-shrink-0"></i>
+                                <span>Google Maps location integration</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-slate-100">
+                        <a href="https://wa.me/918815081605?text=Hi%20Om,%20I%20want%20to%20select%20Plan%201%20(₹10,000)%20Local%20Google%20Starter." target="_blank" rel="noopener" class="flex items-center justify-center gap-2 w-full text-center py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs transition min-h-[44px]">
+                            <i class="fa-brands fa-whatsapp text-sm"></i> Select Plan 1 (₹10,000)
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Plan 2 (₹20,000) -->
+                <div id="tier-card-2" class="light-card light-card-hover rounded-2xl sm:rounded-3xl p-6 flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <span class="text-xs font-extrabold uppercase tracking-wider text-slate-500">Plan 2</span>
+                                <h3 class="text-lg font-extrabold text-slate-900 mt-0.5">Multi-City Growth</h3>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-2xl font-black text-slate-900">₹20,000</span>
+                                <span class="block text-[10px] text-slate-500">One-time fee</span>
+                            </div>
+                        </div>
+                        <p class="text-xs text-slate-500 mt-3 border-b border-slate-200 pb-3">Attract guests searching across neighboring towns & regional routes.</p>
+
+                        <ul class="mt-4 space-y-2.5 text-xs text-slate-700">
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-circle-check text-emerald-600 mt-0.5 flex-shrink-0"></i>
+                                <span>Multi-page static SEO-engineered website</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-circle-check text-emerald-600 mt-0.5 flex-shrink-0"></i>
+                                <span>Google Search Ranking across <strong>2 to 3 cities/suburbs</strong></span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-circle-check text-emerald-600 mt-0.5 flex-shrink-0"></i>
+                                <span>Precise showcase of rooms, dining & banquet offerings</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-circle-check text-emerald-600 mt-0.5 flex-shrink-0"></i>
+                                <span>High-resolution room photo gallery layout</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-slate-100">
+                        <a href="https://wa.me/918815081605?text=Hi%20Om,%20I%20want%20to%20select%20Plan%202%20(₹20,000)%20Multi-City%20Growth." target="_blank" rel="noopener" class="flex items-center justify-center gap-2 w-full text-center py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs transition min-h-[44px]">
+                            <i class="fa-brands fa-whatsapp text-sm"></i> Select Plan 2 (₹20,000)
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Plan 3 (₹40,000) -->
+                <div id="tier-card-3" class="light-card light-card-hover rounded-2xl sm:rounded-3xl p-6 flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <span class="text-xs font-extrabold uppercase tracking-wider text-slate-500">Plan 3</span>
+                                <h3 class="text-lg font-extrabold text-slate-900 mt-0.5">Dynamic & Admin System</h3>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-2xl font-black text-slate-900">₹40,000</span>
+                                <span class="block text-[10px] text-slate-500">One-time fee</span>
+                            </div>
+                        </div>
+                        <p class="text-xs text-slate-500 mt-3 border-b border-slate-200 pb-3">For hotel management wanting full internal control over room content & rates.</p>
+
+                        <ul class="mt-4 space-y-2.5 text-xs text-slate-700">
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-circle-check text-emerald-600 mt-0.5 flex-shrink-0"></i>
+                                <span><strong>Full Hotel Admin Panel</strong> to manage site & rates</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-circle-check text-emerald-600 mt-0.5 flex-shrink-0"></i>
+                                <span>Dynamic Room Showcase & Inventory Management</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-circle-check text-emerald-600 mt-0.5 flex-shrink-0"></i>
+                                <span>Interactive room availability calendar</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-circle-check text-emerald-600 mt-0.5 flex-shrink-0"></i>
+                                <span>Guest inquiry inbox & staff management tool</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-slate-100">
+                        <a href="https://wa.me/918815081605?text=Hi%20Om,%20I%20want%20to%20select%20Plan%203%20(₹40,000)%20Dynamic%20Admin%20System." target="_blank" rel="noopener" class="flex items-center justify-center gap-2 w-full text-center py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs transition min-h-[44px]">
+                            <i class="fa-brands fa-whatsapp text-sm"></i> Select Plan 3 (₹40,000)
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Plan 4 (₹60,000) -->
+                <div id="tier-card-4" class="light-card rounded-2xl sm:rounded-3xl p-6 flex flex-col justify-between border-2 border-emerald-500 bg-emerald-50/20 relative">
+                    <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-emerald-600 text-white text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-wider shadow">
+                        <i class="fa-solid fa-bolt mr-1"></i> Direct Booking Focus
+                    </div>
+                    <div>
+                        <div class="flex justify-between items-start mt-2">
+                            <div>
+                                <span class="text-xs font-extrabold uppercase tracking-wider text-emerald-700">Plan 4</span>
+                                <h3 class="text-lg font-extrabold text-slate-900 mt-0.5">Direct Booking Engine</h3>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-2xl font-black text-emerald-700">₹60,000</span>
+                                <span class="block text-[10px] text-slate-500">One-time fee</span>
+                            </div>
+                        </div>
+                        <p class="text-xs text-slate-600 mt-3 border-b border-slate-200 pb-3">Accept instant direct online payments (0% commission) at lowest price guarantee.</p>
+
+                        <ul class="mt-4 space-y-2.5 text-xs text-slate-800 font-medium">
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-circle-check text-emerald-600 mt-0.5 flex-shrink-0"></i>
+                                <span><strong>Integrated Payment Gateway:</strong> Guests book & pay directly (UPI/Cards) with 0% middleman commission</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-circle-check text-emerald-600 mt-0.5 flex-shrink-0"></i>
+                                <span>Complete Dynamic Hotel Website + Admin Inventory Control</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-circle-check text-emerald-600 mt-0.5 flex-shrink-0"></i>
+                                <span>Google Search Ranking for <strong>2–3 city keywords</strong></span>
+                            </li>
+                            <li class="flex items-start gap-2 text-amber-900 font-bold bg-amber-100/70 p-2.5 rounded-xl border border-amber-200">
+                                <i class="fa-solid fa-wand-magic-sparkles text-amber-600 mt-0.5 flex-shrink-0"></i>
+                                <span><strong>Complimentary AI Search SEO:</strong> Engineered to get recommended when guests search via ChatGPT & AI engines</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-emerald-200/60">
+                        <a href="https://wa.me/918815081605?text=Hi%20Om,%20I%20want%20to%20select%20Plan%204%20(₹60,000)%20Direct%20Booking%20Engine." target="_blank" rel="noopener" class="flex items-center justify-center gap-2 w-full text-center py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs shadow-md transition min-h-[44px]">
+                            <i class="fa-brands fa-whatsapp text-sm"></i> Select Plan 4 (₹60,000)
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Plan 5 (Flagship ₹80,000) -->
+                <div id="tier-card-5" class="light-card highlight-flagship rounded-2xl sm:rounded-3xl p-6 sm:p-8 flex flex-col justify-between relative lg:col-span-2">
+                    <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-gradient-to-r from-amber-600 to-amber-700 text-white text-[11px] font-black px-4 py-1 rounded-full uppercase tracking-wider shadow">
+                        <i class="fa-solid fa-crown mr-1"></i> Flagship Platform • All-in-One OTA Sync
+                    </div>
+                    <div>
+                        <div class="flex flex-col sm:flex-row justify-between items-start gap-2 mt-2">
+                            <div>
+                                <span class="text-xs font-extrabold uppercase tracking-wider text-amber-700">Plan 5 (Flagship Tier)</span>
+                                <h3 class="text-xl sm:text-2xl font-black text-slate-900 mt-0.5">Unified OTA & Direct Hotel Command Center</h3>
+                            </div>
+                            <div class="sm:text-right">
+                                <span class="text-3xl sm:text-4xl font-black text-amber-700">₹80,000</span>
+                                <span class="block text-[10px] text-slate-500">One-time developer fee</span>
+                            </div>
+                        </div>
+                        <p class="text-xs text-slate-600 mt-3 border-b border-slate-200 pb-3">Never log into separate MakeMyTrip or Agoda extranets again. Manage all bookings on 1 single screen.</p>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4 text-xs text-slate-800">
+                            <ul class="space-y-2.5">
+                                <li class="flex items-start gap-2 font-medium">
+                                    <i class="fa-solid fa-circle-check text-amber-600 mt-0.5 flex-shrink-0"></i>
+                                    <span><strong>Everything in ₹60,000 Plan:</strong> Direct Payment Gateway (0% commission), Admin Control, Multi-City SEO & AI Engine.</span>
+                                </li>
+                                <li class="flex items-start gap-2 font-medium">
+                                    <i class="fa-solid fa-circle-check text-amber-600 mt-0.5 flex-shrink-0"></i>
+                                    <span><strong>2-Way Channel Manager Integration:</strong> Direct connection to MakeMyTrip, Agoda, Booking.com & Goibibo.</span>
+                                </li>
+                            </ul>
+                            <ul class="space-y-2.5">
+                                <li class="flex items-start gap-2 font-medium">
+                                    <i class="fa-solid fa-circle-check text-amber-600 mt-0.5 flex-shrink-0"></i>
+                                    <span><strong>1-Screen Reservation Dashboard:</strong> View, modify, and check-in all OTA and direct website guests on one screen.</span>
+                                </li>
+                                <li class="flex items-start gap-2 font-medium">
+                                    <i class="fa-solid fa-circle-check text-amber-600 mt-0.5 flex-shrink-0"></i>
+                                    <span><strong>Automated Inventory Guard:</strong> When a room sells on Agoda, it instantly locks on MakeMyTrip to stop double-booking.</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4">
+                        <div class="text-[11px] text-slate-500">
+                            <i class="fa-solid fa-circle-info text-amber-600 mr-1"></i> Certified Channel Manager partner API fee (~₹1.5k–₹3k/mo) paid directly to channel partner.
+                        </div>
+                        <a href="https://wa.me/918815081605?text=Hi%20Om,%20I%20am%20ready%20to%20select%20Plan%205%20(₹80,000)%20Unified%20OTA%20Sync%20Platform." target="_blank" rel="noopener" class="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white font-extrabold text-xs shadow-lg transition text-center whitespace-nowrap min-h-[44px] flex items-center justify-center gap-2">
+                            <i class="fa-brands fa-whatsapp text-base"></i>
+                            <span>Select Flagship Plan (₹80,000)</span>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- OTA COMMISSION SAVINGS CALCULATOR -->
+        <section id="calculator" class="light-card rounded-2xl sm:rounded-3xl p-6 sm:p-10 border border-slate-200 no-print">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <div class="lg:col-span-5 space-y-4">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-emerald-700">Financial Return On Investment</span>
+                        <h2 class="text-fluid-heading font-extrabold text-slate-900 mt-1">OTA Commission Savings Calculator</h2>
+                        <p class="text-slate-600 text-xs sm:text-sm">See how fast your direct website pays for itself by saving OTA commission fees.</p>
+                    </div>
+
+                    <div class="space-y-4 pt-2">
+                        <div>
+                            <div class="flex justify-between text-xs font-bold text-slate-700 mb-1">
+                                <span>Monthly OTA Booked Rooms</span>
+                                <span id="lbl-rooms" class="text-emerald-700 font-extrabold">50 rooms</span>
+                            </div>
+                            <input type="range" id="rng-rooms" min="10" max="300" step="10" value="50" oninput="runSavingsCalc()" class="w-full cursor-pointer">
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between text-xs font-bold text-slate-700 mb-1">
+                                <span>Average Room Rate / Night</span>
+                                <span id="lbl-rate" class="text-emerald-700 font-extrabold">₹ 2,500</span>
+                            </div>
+                            <input type="range" id="rng-rate" min="1000" max="10000" step="500" value="2500" oninput="runSavingsCalc()" class="w-full cursor-pointer">
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between text-xs font-bold text-slate-700 mb-1">
+                                <span>Average OTA Commission Cut</span>
+                                <span id="lbl-comm" class="text-emerald-700 font-extrabold">18%</span>
+                            </div>
+                            <input type="range" id="rng-comm" min="15" max="25" step="1" value="18" oninput="runSavingsCalc()" class="w-full cursor-pointer">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-7 bg-slate-900 text-white rounded-2xl p-6 sm:p-8 text-center space-y-6 shadow-lg">
+                    <div>
+                        <div class="text-xs font-bold uppercase tracking-wider text-slate-400">Estimated Annual Loss Paid to OTAs</div>
+                        <div id="res-yearly-loss" class="text-2xl sm:text-4xl font-black text-rose-400 mt-2">₹ 2,70,000 / year</div>
+                    </div>
+
+                    <div class="pt-6 border-t border-slate-800 grid grid-cols-2 gap-4">
+                        <div>
+                            <div class="text-[10px] sm:text-[11px] uppercase font-bold text-slate-400">Monthly OTA Fees Paid</div>
+                            <div id="res-monthly-loss" class="text-lg sm:text-2xl font-bold text-white mt-1">₹ 22,500</div>
+                        </div>
+                        <div>
+                            <div class="text-[10px] sm:text-[11px] uppercase font-bold text-slate-400">Payback Period for ₹60k Website</div>
+                            <div id="res-payback" class="text-lg sm:text-2xl font-bold text-emerald-400 mt-1">2.6 Months</div>
+                        </div>
+                    </div>
+
+                    <div class="text-xs text-slate-300 bg-slate-800/80 p-3.5 rounded-xl border border-slate-700 text-left flex items-start gap-2.5 leading-relaxed">
+                        <i class="fa-solid fa-lightbulb text-amber-400 text-base mt-0.5 flex-shrink-0"></i>
+                        <span>By shifting just <strong>35% of OTA traffic to your zero-commission website</strong>, your ₹60,000 or ₹80,000 platform completely pays for itself in under 3 months!</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROVEN TRACK RECORD & LIVE CLICKABLE GOOGLE KEYWORD PROOF -->
+        <section id="portfolio" class="space-y-8">
+            <div class="text-center max-w-3xl mx-auto space-y-2">
+                <span class="text-xs font-bold uppercase tracking-wider text-emerald-700">Proven Engineering Credentials</span>
+                <h2 class="text-fluid-heading font-black text-slate-900">Track Record & Live Google Search Proof</h2>
+                <p class="text-slate-600 text-xs sm:text-base">Click any keyword badge below to run live Google searches and verify our ranking results immediately on Google.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                <!-- Case Study 1: Khandelwal Borewells -->
+                <div class="light-card rounded-2xl p-6 sm:p-8 flex flex-col justify-between border-t-4 border-t-emerald-600">
+                    <div>
+                        <div class="flex items-center justify-between">
+                            <span class="px-2.5 py-1 rounded-md bg-emerald-50 text-emerald-700 text-xs font-bold border border-emerald-200">Static Multi-City SEO</span>
+                            <span class="text-xs text-slate-400 font-semibold">Live Site</span>
+                        </div>
+                        <h3 class="text-xl font-extrabold text-slate-900 mt-3">Khandelwal Borewells</h3>
+                        <a href="https://khandelwalborewells.in/" target="_blank" rel="noopener" class="text-xs font-mono text-emerald-700 hover:underline flex items-center gap-1 mt-1 break-all">
+                            https://khandelwalborewells.in/ <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                        </a>
+                        <p class="text-slate-600 text-xs sm:text-sm mt-3 leading-relaxed">
+                            Engineered to rank #1 across multiple target cities on Google and indexed for ChatGPT AI search recommendations.
+                        </p>
+
+                        <!-- CLICKABLE LIVE GOOGLE KEYWORD BADGES -->
+                        <div class="mt-4 pt-4 border-t border-slate-100">
+                            <div class="text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-2">Click to Verify Ranking Live on Google:</div>
+                            <div class="flex flex-wrap gap-2">
+                                <a href="https://www.google.com/search?q=Best+borewell+services+in+Neelbad" target="_blank" rel="noopener" class="px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 active:scale-95 text-slate-800 text-xs font-medium border border-slate-300 transition flex items-center gap-1.5 min-h-[36px]">
+                                    <i class="fa-brands fa-google text-blue-600 text-xs"></i>
+                                    <span>"Best borewell services in Neelbad"</span>
+                                </a>
+                                <a href="https://www.google.com/search?q=Best+borewell+services+in+Ratibad" target="_blank" rel="noopener" class="px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 active:scale-95 text-slate-800 text-xs font-medium border border-slate-300 transition flex items-center gap-1.5 min-h-[36px]">
+                                    <i class="fa-brands fa-google text-blue-600 text-xs"></i>
+                                    <span>"Best borewell services in Ratibad"</span>
+                                </a>
+                                <a href="https://www.google.com/search?q=Best+borewell+services+in+Sehore" target="_blank" rel="noopener" class="px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 active:scale-95 text-slate-800 text-xs font-medium border border-slate-300 transition flex items-center gap-1.5 min-h-[36px]">
+                                    <i class="fa-brands fa-google text-blue-600 text-xs"></i>
+                                    <span>"Best borewell services in Sehore"</span>
+                                </a>
+                                <a href="https://www.google.com/search?q=Best+borewell+services+in+Bhopal" target="_blank" rel="noopener" class="px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 active:scale-95 text-slate-800 text-xs font-medium border border-slate-300 transition flex items-center gap-1.5 min-h-[36px]">
+                                    <i class="fa-brands fa-google text-blue-600 text-xs"></i>
+                                    <span>"Best borewell services in Bhopal"</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Case Study 2: Jaiswal Family Restaurant -->
+                <div class="light-card rounded-2xl p-6 sm:p-8 flex flex-col justify-between border-t-4 border-t-amber-500">
+                    <div>
+                        <div class="flex items-center justify-between">
+                            <span class="px-2.5 py-1 rounded-md bg-amber-50 text-amber-800 text-xs font-bold border border-amber-200">Hospitality SEO Benchmark</span>
+                            <span class="text-xs text-slate-400 font-semibold">Live Site</span>
+                        </div>
+                        <h3 class="text-xl font-extrabold text-slate-900 mt-3">Jaiswal Family Restaurant</h3>
+                        <a href="https://jaiswalrestaurant.com" target="_blank" rel="noopener" class="text-xs font-mono text-emerald-700 hover:underline flex items-center gap-1 mt-1 break-all">
+                            https://jaiswalrestaurant.com <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                        </a>
+                        <p class="text-slate-600 text-xs sm:text-sm mt-3 leading-relaxed">
+                            Hyper-local hospitality site built to capture local direct family dining bookings without paying commissions to food aggregators.
+                        </p>
+
+                        <!-- CLICKABLE LIVE GOOGLE KEYWORD BADGES -->
+                        <div class="mt-4 pt-4 border-t border-slate-100">
+                            <div class="text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-2">Click to Verify Ranking Live on Google:</div>
+                            <div class="flex flex-wrap gap-2">
+                                <a href="https://www.google.com/search?q=Best+family+restaurant+in+Neelbad" target="_blank" rel="noopener" class="px-3 py-1.5 rounded-lg bg-amber-50 hover:bg-amber-100 active:scale-95 text-amber-950 text-xs font-bold border border-amber-200 transition flex items-center gap-1.5 min-h-[36px]">
+                                    <i class="fa-brands fa-google text-amber-600 text-xs"></i>
+                                    <span>"Best family restaurant in Neelbad"</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Case Study 3: Prayas Samaj Sevi Sanstha -->
+                <div class="light-card rounded-2xl p-6 sm:p-8 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between">
+                            <span class="px-2.5 py-1 rounded-md bg-purple-50 text-purple-700 text-xs font-bold border border-purple-200">Dynamic Admin Benchmark (₹45k Build)</span>
+                            <span class="text-xs text-slate-400 font-semibold">Live System</span>
+                        </div>
+                        <h3 class="text-xl font-extrabold text-slate-900 mt-3">Prayas Samaj Sevi Sanstha</h3>
+                        <a href="https://prayassamajsevisanstha.org" target="_blank" rel="noopener" class="text-xs font-mono text-emerald-700 hover:underline flex items-center gap-1 mt-1 break-all">
+                            https://prayassamajsevisanstha.org <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                        </a>
+                        <p class="text-slate-600 text-xs sm:text-sm mt-3 leading-relaxed">
+                            Full dynamic website architecture featuring comprehensive Admin Control Panel, dynamic content management, user registration, and secure portal logins.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Case Study 4: BuildOnClicks -->
+                <div class="light-card rounded-2xl p-6 sm:p-8 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between">
+                            <span class="px-2.5 py-1 rounded-md bg-blue-50 text-blue-700 text-xs font-bold border border-blue-200">Enterprise AI Engine (₹110k Build)</span>
+                            <span class="text-xs text-amber-600 font-bold">Under Active Build</span>
+                        </div>
+                        <h3 class="text-xl font-extrabold text-slate-900 mt-3">BuildOnClicks</h3>
+                        <a href="https://www.buildonclicks.com/" target="_blank" rel="noopener" class="text-xs font-mono text-emerald-700 hover:underline flex items-center gap-1 mt-1 break-all">
+                            https://www.buildonclicks.com/ <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                        </a>
+                        <p class="text-slate-600 text-xs sm:text-sm mt-3 leading-relaxed">
+                            Multi-vendor commercial platform featuring complex user roles, dedicated Vendor & Admin Dashboards, User Profiles, and in-built AI Chatbot assistants.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Additional Engineering Portfolio -->
+            <div class="light-card rounded-2xl sm:rounded-3xl p-6 sm:p-8 border border-slate-200">
+                <h3 class="text-base font-extrabold text-slate-900 mb-4 flex items-center gap-2">
+                    <i class="fa-solid fa-laptop-code text-emerald-600"></i>
+                    <span>Additional Live Innovation & Open-Source Projects</span>
+                </h3>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3.5">
+                    <a href="https://agro-legacy-tree.vercel.app/" target="_blank" rel="noopener" class="p-4 rounded-xl bg-slate-50 hover:bg-slate-100 border border-slate-200 transition block group min-h-[44px]">
+                        <div class="font-bold text-slate-900 group-hover:text-emerald-600 text-xs sm:text-sm flex items-center justify-between">
+                            Agro Legacy Tree <i class="fa-solid fa-arrow-right text-xs opacity-0 group-hover:opacity-100 transition"></i>
+                        </div>
+                        <div class="text-[11px] text-slate-500 mt-1">Full-stack Agritech web platform on Vercel</div>
+                    </a>
+
+                    <a href="https://outstandingom.github.io/Location.guthub.io/" target="_blank" rel="noopener" class="p-4 rounded-xl bg-slate-50 hover:bg-slate-100 border border-slate-200 transition block group min-h-[44px]">
+                        <div class="font-bold text-slate-900 group-hover:text-emerald-600 text-xs sm:text-sm flex items-center justify-between">
+                            Geo Location Finder <i class="fa-solid fa-arrow-right text-xs opacity-0 group-hover:opacity-100 transition"></i>
+                        </div>
+                        <div class="text-[11px] text-slate-500 mt-1">Spatial location finder and mapping tool</div>
+                    </a>
+
+                    <a href="https://ctf-agent-orchestrator.vercel.app/" target="_blank" rel="noopener" class="p-4 rounded-xl bg-slate-50 hover:bg-slate-100 border border-slate-200 transition block group min-h-[44px]">
+                        <div class="font-bold text-slate-900 group-hover:text-emerald-600 text-xs sm:text-sm flex items-center justify-between">
+                            CTF Agent Orchestrator <i class="fa-solid fa-arrow-right text-xs opacity-0 group-hover:opacity-100 transition"></i>
+                        </div>
+                        <div class="text-[11px] text-slate-500 mt-1">Autonomous AI agent orchestrator platform</div>
+                    </a>
+                </div>
+
+                <div class="mt-6 text-center border-t border-slate-100 pt-4">
+                    <span class="text-xs text-slate-500">Explore complete developer codebase & repositories on GitHub: </span>
+                    <a href="https://github.com/outstandingom/" target="_blank" rel="noopener" class="text-xs font-bold text-slate-900 hover:text-emerald-600 inline-flex items-center gap-1 font-mono mt-1 sm:mt-0">
+                        <i class="fa-brands fa-github text-sm"></i> https://github.com/outstandingom/
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- TECHNICAL TRANSPARENCY NOTE -->
+        <section class="light-card rounded-2xl p-6 border-l-4 border-l-blue-600 bg-blue-50/40 text-xs sm:text-sm text-slate-700">
+            <h4 class="font-extrabold text-slate-900 flex items-center gap-2 mb-1 text-sm sm:text-base">
+                <i class="fa-solid fa-shield-halved text-blue-600"></i> Technical Architecture Note: Channel Manager Integration
+            </h4>
+            <p class="leading-relaxed">
+                OTAs like MakeMyTrip, Agoda, and Booking.com do not permit raw API access to standalone individual hotel websites. To legally and reliably stream reservation data into your unified dashboard, we connect your platform via certified Channel Manager API bridges (such as AxisRooms, eZee Centrix, or Channex). This guarantees 100% 2-way instant synchronization without any risk of double-booking.
+            </p>
+        </section>
+
+        <!-- FINAL CALL TO ACTION SECTION -->
+        <section class="rounded-2xl sm:rounded-3xl bg-slate-900 text-white p-6 sm:p-12 text-center shadow-2xl relative overflow-hidden">
+            <div class="max-w-3xl mx-auto space-y-6">
+                <span class="text-xs font-bold uppercase tracking-wider text-amber-400">Direct Hotel Revenue Growth</span>
+                <h2 class="text-fluid-heading font-black">Ready to Upgrade Your Hotel Digital System?</h2>
+                <p class="text-slate-300 text-xs sm:text-base leading-relaxed">
+                    Stop giving away your hotel profits in heavy OTA commission fees. Upgrade to your direct booking engine and rank #1 on Google in your target region.
+                </p>
+
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2 no-print">
+                    <a href="https://wa.me/918815081605?text=Hi%20Om,%20I%20have%20reviewed%20the%20Hotel%20Website%20and%20OTA%20Booking%20Engine%20Proposal%20and%20want%20to%20start." 
+                       target="_blank" 
+                       rel="noopener"
+                       class="w-full sm:w-auto px-6 py-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 active:scale-95 text-white font-extrabold text-sm sm:text-base shadow-xl transition flex items-center justify-center gap-2.5 min-h-[48px]">
+                        <i class="fa-brands fa-whatsapp text-xl"></i>
+                        <span>Accept Proposal via WhatsApp</span>
+                    </a>
+
+                    <a href="tel:+918815081605" 
+                       class="w-full sm:w-auto px-6 py-4 rounded-xl bg-slate-800 hover:bg-slate-700 active:scale-95 text-white font-bold text-sm sm:text-base border border-slate-700 transition flex items-center justify-center gap-2 min-h-[48px]">
+                        <i class="fa-solid fa-phone text-amber-400"></i>
+                        <span>Call Direct (+91 8815081605)</span>
+                    </a>
+                </div>
+
+                <div class="pt-6 text-xs text-slate-400 border-t border-slate-800">
+                    Developer Direct Contact: <strong>Om Uikey (+91 8815081605)</strong> • GitHub: <a href="https://github.com/outstandingom/" target="_blank" rel="noopener" class="text-emerald-400 hover:underline font-mono">github.com/outstandingom</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-slate-200 bg-white py-8 no-print">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-xs text-slate-500 space-y-2">
+            <p>© 2026 Developer Om Uikey (+91 8815081605). All Rights Reserved.</p>
+            <p>Designed for High-Speed SEO Rankings, Zero-Commission Direct Bookings, and Multi-OTA Automation.</p>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE JAVASCRIPT LOGIC -->
+    <script>
+        // Quiz Option Wrapper Selection Helper
+        function selectQuizOption(value) {
+            const radio = document.querySelector(`input[name="req_tier"][value="${value}"]`);
+            if (radio) {
+                radio.checked = true;
+                updateRecommender();
+            }
+        }
+
+        // Interactive Requirement & Pricing Recommender Update
+        function updateRecommender() {
+            const selectedRadio = document.querySelector('input[name="req_tier"]:checked');
+            if (!selectedRadio) return;
+
+            const tierVal = selectedRadio.value;
+            let title = "";
+            let price = "";
+            let desc = "";
+            let waMessage = "";
+
+            if (tierVal === "1") {
+                title = "Plan 1: Local Google Starter Website";
+                price = "₹10,000";
+                desc = "High-speed static website ranking for 1 keyword in your city with click-to-call and WhatsApp inquiries.";
+                waMessage = "Hi Om, I am interested in Plan 1 (₹10,000) Local Google Starter Website for my hotel.";
+            } else if (tierVal === "2") {
+                title = "Plan 2: Multi-City Growth Website";
+                price = "₹20,000";
+                desc = "Static multi-page hotel website engineered to rank on Google across 2 to 3 nearby cities.";
+                waMessage = "Hi Om, I am interested in Plan 2 (₹20,000) Multi-City Growth Website for my hotel.";
+            } else if (tierVal === "3") {
+                title = "Plan 3: Dynamic Hotel & Admin System";
+                price = "₹40,000";
+                desc = "Full Admin Control Panel to manage room pricing, inventory, availability calendar, and guest inquiries.";
+                waMessage = "Hi Om, I am interested in Plan 3 (₹40,000) Dynamic Admin System for my hotel.";
+            } else if (tierVal === "4") {
+                title = "Plan 4: Direct Booking Engine + Payment Gateway";
+                price = "₹60,000";
+                desc = "Integrated Payment Gateway (0% OTA fee) + Dynamic Admin Panel + Multi-City SEO + Complimentary ChatGPT AI Search Optimization.";
+                waMessage = "Hi Om, I am interested in Plan 4 (₹60,000) Direct Booking Engine for my hotel.";
+            } else if (tierVal === "5") {
+                title = "Plan 5: Enterprise All-in-One OTA Sync Platform";
+                price = "₹80,000";
+                desc = "Complete direct booking engine + Payment Gateway + Multi-City SEO + 1-Screen MakeMyTrip & Agoda 2-way sync.";
+                waMessage = "Hi Om, I am interested in Plan 5 (₹80,000) Enterprise All-in-One OTA Sync Platform for my hotel.";
+            }
+
+            document.getElementById('rec-title').innerText = title;
+            document.getElementById('rec-price').innerText = price;
+            document.getElementById('rec-desc').innerText = desc;
+            document.getElementById('rec-wa-btn').href = "https://wa.me/918815081605?text=" + encodeURIComponent(waMessage);
+
+            // Highlight corresponding pricing card
+            for (let i = 1; i <= 5; i++) {
+                const card = document.getElementById('tier-card-' + i);
+                if (card) {
+                    if (i.toString() === tierVal) {
+                        card.classList.add('ring-2', 'ring-emerald-600');
+                    } else {
+                        card.classList.remove('ring-2', 'ring-emerald-600');
+                    }
+                }
+            }
+        }
+
+        // OTA Commission Savings Calculator Logic
+        function runSavingsCalc() {
+            const rooms = parseInt(document.getElementById('rng-rooms').value);
+            const rate = parseInt(document.getElementById('rng-rate').value);
+            const comm = parseInt(document.getElementById('rng-comm').value) / 100;
+
+            document.getElementById('lbl-rooms').innerText = rooms + " rooms";
+            document.getElementById('lbl-rate').innerText = "₹ " + rate.toLocaleString('en-IN');
+            document.getElementById('lbl-comm').innerText = Math.round(comm * 100) + "%";
+
+            const monthlyRevenue = rooms * rate;
+            const monthlyLoss = monthlyRevenue * comm;
+            const yearlyLoss = monthlyLoss * 12;
+
+            // Assuming website converts 35% of OTA bookings to direct
+            const monthlySavings = monthlyLoss * 0.35;
+            const paybackMonths = monthlySavings > 0 ? (60000 / monthlySavings).toFixed(1) : 0;
+
+            document.getElementById('res-yearly-loss').innerText = "₹ " + Math.round(yearlyLoss).toLocaleString('en-IN') + " / yr";
+            document.getElementById('res-monthly-loss').innerText = "₹ " + Math.round(monthlyLoss).toLocaleString('en-IN');
+            document.getElementById('res-payback').innerText = paybackMonths + " Months";
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            updateRecommender();
+            runSavingsCalc();
+        });
+    </script>
+</body>
+</html>
